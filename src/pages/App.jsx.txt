@@ -1,0 +1,21 @@
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Even from './pages/Even';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import ForgotPassword from './pages/ForgotPassword'; 
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Even />} />
+        <Route path="/inscription" element={<Register />} />
+        <Route path="/connexion" element={<Login />} />
+        <Route path="/mot de passe-oublie" element={<ForgotPassword />} /> 
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
