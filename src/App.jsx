@@ -3,7 +3,6 @@ import './App.css';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ForgotPassword from './ForgotPassworld';
 
 import Dashboard from './pages/Dashboard';
 import Hotel from './pages/Hotel';
@@ -11,6 +10,7 @@ import HotelForm from './pages/HotelForm';
 
 import DashboardLayout from './layouts/DashboardLayout';
 import PublicLayout from './layouts/PublicLayout';
+import ForgotPassword from './ForgotPassworld';
 
 function App() {
   return (
