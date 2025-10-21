@@ -22,7 +22,7 @@ class Hotel extends Component {
                           <div className="w-14 h-14 p-1 rounded-full overflow-hidden flex-shrink-0">
                       <img  src="/image1/Picture.png" alt=""  className="w-full h-full object-cover rounded-full"/>
                    </div>
-                    <i className="fa-regular fa-left-from-bracket"></i>
+                    <i class="fa-solid fa-right-to-bracket" onClick={'index'}></i>
                </div>
           </div>
 

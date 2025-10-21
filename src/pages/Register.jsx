@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
   const [formulaire, setFormulaire] = useState({
@@ -11,6 +12,7 @@ const Register = () => {
   const [message, setMessage] = useState('');
   const [messagePartiel, setMessagePartiel] = useState({});
   const [erreurBoleen, setErreurBoleen] = useState(false);
+  const naviguer =useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,18 +25,19 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const erreurs = {};
-    if (!formulaire.nom.trim()) erreurs.nom = "Le nom est requis.";
-    if (!formulaire.email.trim()) erreurs.email = "L'email est requis.";
-    if (!formulaire.motdepasse) erreurs.motdepasse = "Le mot de passe est requis.";
-    if (!formulaire.term) erreurs.term = "Vous devez accepter les termes.";
+    // const erreurs = {};
+    // if (!formulaire.nom.trim()) erreurs.nom = "Le nom est requis.";
+    // if (!formulaire.email.trim()) erreurs.email = "L'email est requis.";
+    // if (!formulaire.motdepasse) erreurs.motdepasse = "Le mot de passe est requis.";
+    // if (!formulaire.term) erreurs.term = "Vous devez accepter les termes.";
 
-    if (Object.keys(erreurs).length > 0) {
-      setMessagePartiel(erreurs);
-      setMessage("Veuillez corriger les erreurs.");
-      setErreurBoleen(false);
-      return;
-    }
+    // if (Object.keys(erreurs).length > 0) {
+    //   setMessagePartiel(erreurs);
+    //   setMessage("Veuillez corriger les erreurs.");
+    //   setErreurBoleen(false);
+    //   return;
+    // }
+     naviguer('/dashboard')
 
     setMessage("Inscription réussie !");
     setErreurBoleen(true);

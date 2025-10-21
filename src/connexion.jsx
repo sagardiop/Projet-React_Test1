@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formulaire, setFormulaire] = useState({
@@ -11,6 +11,7 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [messagePartiel, setMessagePartiel] = useState({});
   const [erreurBoleen, setErreurBoleen] = useState(false);
+  const naviguer = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,19 +36,21 @@ const Login = () => {
       return;
     }
 
+    naviguer('/dashboard')
+
     
-    if (
-      formulaire.email === "admin@example.com" &&
-      formulaire.motdepasse === "admin123"
-    ) {
-      setMessage("Connexion réussie !");
-      setErreurBoleen(true);
-      setMessagePartiel({});
-      setFormulaire({ email: '', motdepasse: '', term: false }); 
-    } else {
-      setMessage("Email ou mot de passe incorrect.");
-      setErreurBoleen(false);
-    }
+    // if (
+    //   formulaire.email === "admin@example.com" &&
+    //   formulaire.motdepasse === "admin123"
+    // ) {
+    //   setMessage("Connexion réussie !");
+    //   setErreurBoleen(true);
+    //   setMessagePartiel({});
+    //   setFormulaire({ email: '', motdepasse: '', term: false }); 
+    // } else {
+    //   setMessage("Email ou mot de passe incorrect.");
+    //   setErreurBoleen(false);
+    // }
   };
 
   return (
