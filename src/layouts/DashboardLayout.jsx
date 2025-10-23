@@ -5,7 +5,7 @@ import Menu from '../components/Menu';
   return (
     <div className="flex">
       <Menu />
-      <div className="flex-1 p-6">
+      <div className="flex-1 md:ps-25 ps-30">
         <Outlet />
       </div>
     </div>
