@@ -17,17 +17,17 @@ function App() {
     <Router>
       <Routes>
       
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgotpass" element={<ForgotPassword />} />
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="forgotpass" element={<ForgotPassword />} />
         </Route>
 
        
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/hotel" element={<Hotel />} />
-          <Route path="/hotelform" element={<HotelForm />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="hotel" element={<Hotel />} />
+          <Route path="hotelform" element={<HotelForm />} />
         </Route>
       </Routes>
     </Router>
