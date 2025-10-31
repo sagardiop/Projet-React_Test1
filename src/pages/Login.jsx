@@ -40,9 +40,9 @@ const Login = () => {
       setMessagePartiel({});
 
       // 🔹 Stocker le token pour les futures requêtes
-      if (response.data.data?.token) {
-        localStorage.setItem("token", response.data.data.token);
-      }
+      // if (response.data.data?.token) {
+        // localStorage.setItem("token", response.data.data.token);
+      // }
 
       // 🔹 Redirection vers le tableau de bord
       setTimeout(() => {

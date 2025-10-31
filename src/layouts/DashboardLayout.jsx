@@ -13,3 +13,6 @@ import Menu from '../components/Menu';
 }
 
 export default DashboardLayout
+
+
+//  <Route path="/dashboard" element={<DashboardLayout />}>

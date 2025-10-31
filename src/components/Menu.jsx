@@ -21,12 +21,12 @@ function Menu() {
 
   <li className="flex flex-col items-start space-y-2">
     <i className="fa-solid fa-hotel"></i>
-    <Link to="/hotel" className="hover:underline text-xs">Hotels</Link>
+    <Link to="/dashboard/hotel" className="hover:underline text-xs">Hotels</Link>
   </li>
 
   <li className="flex flex-col items-start space-y-2">
     <i className="fa-solid fa-plus"></i>
-    <Link to="/hotelform" className="hover:underline text-xs">Ajouter un hotel</Link>
+    <Link to="/dashboard/hotelform" className="hover:underline text-xs">Ajouter un hotel</Link>
   </li>
 </ul>
       </div>
