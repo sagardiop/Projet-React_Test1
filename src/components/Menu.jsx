@@ -24,10 +24,10 @@ function Menu() {
     <Link to="/dashboard/hotel" className="hover:underline text-xs">Hotels</Link>
   </li>
 
-  <li className="flex flex-col items-start space-y-2">
+  {/* <li className="flex flex-col items-start space-y-2">
     <i className="fa-solid fa-plus"></i>
     <Link to="/dashboard/hotelform" className="hover:underline text-xs">Ajouter un hotel</Link>
-  </li>
+  </li> */}
 </ul>
       </div>
 

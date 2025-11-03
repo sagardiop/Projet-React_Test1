@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ attention ici : 'react-router-dom'
+import { useNavigate } from "react-router-dom"; 
 
 const Register = () => {
   const [formulaire, setFormulaire] = useState({
@@ -33,7 +33,7 @@ const Register = () => {
         term: formulaire.term,
       });
 
-      console.log("✅ Réponse API :", response.data);
+      console.log(" Réponse API :", response.data);
 
       setMessage("Inscription réussie !");
       setErreurBoleen(true);
@@ -47,7 +47,7 @@ const Register = () => {
   console.error("❌ Erreur :", error);
 
   if (error.response) {
-    console.log("📩 Réponse Laravel complète :", error.response.data); // 👈 ajoute ça
+    console.log("📩 Réponse Laravel complète :", error.response.data); 
     setErreurBoleen(false);
     setMessage(error.response.data.message || "Erreur d'inscription.");
     setMessagePartiel(error.response.data.errors || {});
@@ -55,10 +55,8 @@ const Register = () => {
     setMessage("Erreur réseau. Vérifie ta connexion.");
   }
 }
-console.log("🧩 Détails des erreurs :", error.response.data.errors);
+console.log(" Détails des erreurs :", error.response.data.errors);
 
-
-    // ✅ Reset avec les BONNES clés
     setFormulaire({
       name: "",
       email: "",

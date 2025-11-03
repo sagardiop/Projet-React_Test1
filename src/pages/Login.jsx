@@ -15,7 +15,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // 🔹 Gère la saisie des champs du formulaire
+ 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormulaire((prev) => ({
@@ -33,7 +33,7 @@ const Login = () => {
         password: formulaire.password,
       });
 
-       console.log("✅ Réponse API :", response.data);
+       console.log(" Réponse API :", response.data);
 
       setMessage("Connexion réussie !");
       setErreurBoleen(true);
@@ -44,7 +44,7 @@ const Login = () => {
         // localStorage.setItem("token", response.data.data.token);
       // }
 
-      // 🔹 Redirection vers le tableau de bord
+    
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000);

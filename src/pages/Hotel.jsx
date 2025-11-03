@@ -3,31 +3,56 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Hotel() {
-  const naviguer = useNavigate();
+  const navigate = useNavigate();
   const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
+
+  const fetchHotels = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get("http://127.0.0.1:8000/api/hotels");
+      setHotels(res.data);
+    } catch (err) {
+      console.error("Erreur lors de la récupération des hôtels :", err);
+      setMessage("❌ Erreur lors du chargement des hôtels.");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  
+  const deleteAllHotels = async () => {
+    try {
+      await axios.delete("http://127.0.0.1:8000/api/hotels/deleteAll");
+      setHotels([]); 
+      setMessage(" Tous les hôtels ont été supprimés avec succès !");
+      setSuccess(true);
+    } catch (err) {
+      console.error("Erreur lors de la suppression :", err);
+      setMessage("❌ Une erreur est survenue lors de la suppression.");
+      setSuccess(false);
+    }
+  };
+
+ 
   useEffect(() => {
-    const fetchHotels = async () => {
-      try {
-        const res = await axios.get("http://localhost:8000/api/hotels");
-        setHotels(res.data); 
-      } catch (err) {
-        console.error("Erreur lors de la récupération des hôtels :", err);
-      }
-    };
-
     fetchHotels();
   }, []);
 
+
   const handleCreateHotel = () => {
-    naviguer("/create-hotel");
+    navigate("/dashboard/hotelform");
   };
 
   return (
     <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="shadow-lg bg-white flex flex-col gap-3 p-6 rounded-lg w-full mb-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <h1 className="text-2xl font-bold text-gray-800">Liste des Hotels</h1>
+          <h1 className="text-2xl font-bold text-gray-800">Liste des Hôtels</h1>
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <input
               type="text"
@@ -41,45 +66,68 @@ function Hotel() {
               </span>
             </div>
             <div className="w-14 h-14 p-1 rounded-full overflow-hidden">
-              <img
-                src="/image1/Picture.png"
-                alt="profil"
-                className="w-full h-full object-cover rounded-full"
+              <img  src="/image1/Picture.png" alt="profil" className="w-full h-full object-cover rounded-full"
               />
             </div>
             <i
               className="fa-solid fa-right-to-bracket text-xl cursor-pointer hover:text-yellow-500"
-              onClick={() => naviguer("/")}
+              onClick={() => navigate("/")}
             ></i>
           </div>
         </div>
 
         <div className="border-t-2 rounded-full border-[#aeaeb2]/70 w-full mb-8"></div>
+        {message && (
+          <div
+            className={`mb-4 text-center text-sm ${
+              success ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {message}
+          </div>
+        )}
 
+     
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <h1 className="text-xl font-bold text-gray-800">Hotels</h1>
-          <button  type="button"  onClick={handleCreateHotel}  className="px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-gray-100"
-          > + Créer un nouveau hotel
+          <h1 className="text-xl font-bold text-gray-800">Hôtels</h1>
+          <button  type="button"  onClick={handleCreateHotel} className="px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-gray-100" 
+              >+ Créer un nouvel hôtel
           </button>
         </div>
 
-      
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {hotels.map((hotel) => (
-            <div key={hotel.id} className="bg-white p-4 rounded shadow">
-              {hotel.photo && (
-                <img  src={`http://localhost:8000/storage/${hotel.photo}`}  alt={hotel.nom}
-                  className="w-full h-48 object-cover mb-2 rounded"
-                />
+        {loading ? (
+          <p>Chargement...</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {hotels.length === 0 ? (
+                <p>Aucun hôtel trouvé.</p>
+              ) : (
+                hotels.map((hotel) => (
+                  <div key={hotel.id} className="bg-white p-4 rounded shadow">
+                    {hotel.photo && (
+                      <img  src={`http://127.0.0.1:8000/storage/${hotel.photo}?t=${Date.now()}`}  alt={hotel.nom}
+                        className="w-full h-48 object-cover mb-2 rounded"
+                      />
+                    )}
+                    <h2 className="text-lg font-bold">{hotel.nom}</h2>
+                    <p>{hotel.adresse}</p>
+                    <p>
+                      {hotel.prix} {hotel.devise}
+                    </p>
+                  </div>
+                ))
               )}
-              <h2 className="text-lg font-bold">{hotel.nom}</h2>
-              <p>{hotel.adresse}</p>
-              <p>
-                {hotel.prix} {hotel.devise}
-              </p>
             </div>
-          ))}
-        </div>
+            {hotels.length > 0 && (
+              <div className="mt-8 text-center">
+                <button  type="button"  onClick={deleteAllHotels}  className="px-6 py-3 bg-red-500 text-white rounded hover:bg-red-600 shadow-md"
+                > Supprimer tous les hôtels  
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
@@ -91,7 +139,11 @@ export default Hotel;
 
 
 
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+
+
+
+      /* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
        
         <div className="bg-white rounded shadow overflow-hidden">
           <img src="/image/image (1).png" alt="Hotel 1" className="w-full h-48 object-cover" />
@@ -176,4 +228,4 @@ export default Hotel;
   );
 }
 
-export default Hotel; */}
+export default Hotel; */
