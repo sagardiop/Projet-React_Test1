@@ -1,7 +1,10 @@
-const register = "http://127.0.0.1:8000/api/register";
-const login = "http://127.0.0.1:8000/api/login";
-const hotel = "http://127.0.0.1:8000/api/hotels";
-const deleteAllHotels = "http://127.0.0.1:8000/api/hotels/delete-all";
+// export const baseURL = "http://127.0.0.1:8000"
+export const baseURL = "https://backen-du-projet-text1.onrender.com"
+
+const register =`${baseURL}/api/register`;
+const login = `${baseURL}/api/login`;
+const hotel = `${baseURL}/api/hotels`;
+const deleteAllHotels = `${baseURL}/api/hotels/delete-all`;
 
 
 

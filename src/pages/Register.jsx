@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
+import { register } from "../Api/axios/VariableAxios";
 
 const Register = () => {
   const [formulaire, setFormulaire] = useState({
@@ -26,25 +27,28 @@ const Register = () => {
     try {
       console.log("🔍 Données envoyées :", formulaire);
 
-      const response = await axios.post("http://127.0.0.1:8000/api/register", {
+      const response = await axios.post(register, {
         name: formulaire.name,
         email: formulaire.email,
         password: formulaire.password,
         term: formulaire.term,
       });
 
-      console.log(" Réponse API :", response.data);
+      console.log(" Réponse API :", response.data); 
 
+      const {success,message,data}=response.data;
+      localStorage.setItem('user',data.user)
+      
       setMessage("Inscription réussie !");
       setErreurBoleen(true);
       setMessagePartiel({});
 
       // Optionnel : stocker le token
-      // localStorage.setItem("token", response.data.data.token);
+      localStorage.setItem("token", data.token);
 
       naviguer("/dashboard");
     } catch (error) {
-  console.error("❌ Erreur :", error);
+  // console.error("❌ Erreur :", error);
 
   if (error.response) {
     console.log("📩 Réponse Laravel complète :", error.response.data); 
@@ -55,7 +59,7 @@ const Register = () => {
     setMessage("Erreur réseau. Vérifie ta connexion.");
   }
 }
-console.log(" Détails des erreurs :", error.response.data.errors);
+// console.log(" Détails des erreurs :", error.response.data.errors);
 
     setFormulaire({
       name: "",

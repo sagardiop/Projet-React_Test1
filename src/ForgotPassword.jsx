@@ -26,7 +26,7 @@ function ForgotPassword() {
   return (
 <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
   <div className="flex flex-col items-center mb-8">
-    <img src="/image1/Link → SVG.svg" alt="profil" className="w-32 h-32 object-contain" />
+   <img src="/image1/Link → SVG.svg" alt="profil" className="w-32 h-32 object-contain" />
     <p className="mt-4 text-xl font-semibold text-gray-700">RED PRODUCT</p>
   </div>
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
@@ -39,7 +39,7 @@ function ForgotPassword() {
         {error && <div className="bg-red-100 text-red-800 p-2 mb-4 rounded">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="mt-4 text-sm text-center">
+          <div className="mt-4 text-sm flex flex-col items-center">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">Votre e-mail</label>
             <input id="email" type="email" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500" value={email}
               onChange={(e) => setEmail(e.target.value)} placeholder="exemple@email.com" required />
@@ -47,10 +47,12 @@ function ForgotPassword() {
 
            <button 
              type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded-md">Envoyer</button>
-             <div className="mt-4 text-sm text-center">
-           <Link to="/" className="text-green-500 hover:underline text-center mt-4">Revenir a la connexion</Link>
-           
+            <div className="text-center mt-4">
+           <Link to="/" className="text-green-500 hover:underline">
+                     Revenir à la connexion
+         </Link>
           </div>
+
         </form>
       </div>
     </div>

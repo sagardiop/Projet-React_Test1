@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../Api/axios/VariableAxios";
 
 function Hotel() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Hotel() {
   const fetchHotels = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://127.0.0.1:8000/api/hotels");
+      const res = await axios.get(`${baseURL}/api/hotels`);
       setHotels(res.data);
     } catch (err) {
       console.error("Erreur lors de la récupération des hôtels :", err);
@@ -27,7 +28,7 @@ function Hotel() {
   
   const deleteAllHotels = async () => {
     try {
-      await axios.delete("http://127.0.0.1:8000/api/hotels/deleteAll");
+      await axios.delete(`${baseURL}/api/hotels`);
       setHotels([]); 
       setMessage(" Tous les hôtels ont été supprimés avec succès !");
       setSuccess(true);
@@ -106,7 +107,7 @@ function Hotel() {
                 hotels.map((hotel) => (
                   <div key={hotel.id} className="bg-white p-4 rounded shadow">
                     {hotel.photo && (
-                      <img  src={`http://127.0.0.1:8000/storage/${hotel.photo}?t=${Date.now()}`}  alt={hotel.nom}
+                      <img  src={`${baseURL}/storage/${hotel.photo}?t=${Date.now()}`}  alt={hotel.nom}
                         className="w-full h-48 object-cover mb-2 rounded"
                       />
                     )}

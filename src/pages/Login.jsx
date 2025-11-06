@@ -34,6 +34,8 @@ const Login = () => {
       });
 
        console.log(" Réponse API :", response.data);
+        const {success,message,data}=response.data;
+        localStorage.setItem('user',data.user)
 
       setMessage("Connexion réussie !");
       setErreurBoleen(true);
@@ -41,7 +43,7 @@ const Login = () => {
 
       // 🔹 Stocker le token pour les futures requêtes
       // if (response.data.data?.token) {
-        // localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("token", data.token);
       // }
 
     
