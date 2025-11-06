@@ -38,7 +38,7 @@ function HotelForm() {
     }
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/hotels", data, {
+      const res = await axios.post(`${baseURL}/api/hotels`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
