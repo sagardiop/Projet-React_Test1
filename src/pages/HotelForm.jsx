@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../Api/axios/VariableAxios";
 
 function HotelForm() {
   const naviguer = useNavigate();
