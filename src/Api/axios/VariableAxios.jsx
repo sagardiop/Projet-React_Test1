@@ -5,7 +5,7 @@ const register =`${baseURL}/api/register`;
 const login = `${baseURL}/api/login`;
 const hotel = `${baseURL}/api/hotels`;
 const deleteAllHotels = `${baseURL}/api/hotels/delete-all`;
+const logout = `${baseURL}/api/logout`;
 
 
-
-export { register, login, hotel, deleteAllHotels };
+export { register, login, hotel, deleteAllHotels, logout};

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { register } from "../Api/axios/VariableAxios";
 
 const Register = () => {
@@ -34,11 +34,11 @@ const Register = () => {
         term: formulaire.term,
       });
 
-      console.log(" Réponse API :", response.data); 
+      console.log(" Réponse API :", response.data);
 
-      const {success,message,data}=response.data;
-      localStorage.setItem('user',data.user)
-      
+      const { success, message, data } = response.data;
+      localStorage.setItem('user', JSON.stringify(data.user))
+
       setMessage("Inscription réussie !");
       setErreurBoleen(true);
       setMessagePartiel({});
@@ -48,18 +48,18 @@ const Register = () => {
 
       naviguer("/dashboard");
     } catch (error) {
-  // console.error("❌ Erreur :", error);
+      // console.error("❌ Erreur :", error);
 
-  if (error.response) {
-    console.log("📩 Réponse Laravel complète :", error.response.data); 
-    setErreurBoleen(false);
-    setMessage(error.response.data.message || "Erreur d'inscription.");
-    setMessagePartiel(error.response.data.errors || {});
-  } else {
-    setMessage("Erreur réseau. Vérifie ta connexion.");
-  }
-}
-// console.log(" Détails des erreurs :", error.response.data.errors);
+      if (error.response) {
+        console.log("📩 Réponse Laravel complète :", error.response.data);
+        setErreurBoleen(false);
+        setMessage(error.response.data.message || "Erreur d'inscription.");
+        setMessagePartiel(error.response.data.errors || {});
+      } else {
+        setMessage("Erreur réseau. Vérifie ta connexion.");
+      }
+    }
+    // console.log(" Détails des erreurs :", error.response.data.errors);
 
     setFormulaire({
       name: "",
@@ -72,17 +72,16 @@ const Register = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center mb-8">
-        <img  src="/image1/Link → SVG.svg"  alt="profil" className="w-32 h-32 object-contain" />
+        <img src="/image1/Link → SVG.svg" alt="profil" className="w-32 h-32 object-contain" />
         <p className="mt-4 text-xl font-semibold text-gray-700">RED PRODUCT</p>
       </div>
 
-      <form  onSubmit={handleSubmit}  className="bg-white p-6 sm:p-8 rounded-lg shadow-md w-full max-w-sm">
+      <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-lg shadow-md w-full max-w-sm">
         <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center">Inscrivez-vous en tant qu’Admin </h2>
         {message && (
           <div
-            className={`mb-4 text-center text-sm ${
-              erreurBoleen ? "text-green-600" : "text-red-600"
-            }`}
+            className={`mb-4 text-center text-sm ${erreurBoleen ? "text-green-600" : "text-red-600"
+              }`}
           >
             {message}
           </div>
@@ -90,7 +89,7 @@ const Register = () => {
 
         <div className="mb-6">
           <label htmlFor="name" className="block text-gray-700 mb-1">Nom</label>
-          <input  type="text"  name="name" id="name" value={formulaire.name} onChange={handleChange}
+          <input type="text" name="name" id="name" value={formulaire.name} onChange={handleChange}
             className="w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 py-2 px-1 bg-transparent"
             placeholder="Ex: John Doe"
           />
@@ -101,7 +100,7 @@ const Register = () => {
 
         <div className="mb-6">
           <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
-          <input  type="text"  name="email"  id="email"  value={formulaire.email} onChange={handleChange} 
+          <input type="text" name="email" id="email" value={formulaire.email} onChange={handleChange}
             className="w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 py-2 px-1 bg-transparent"
             placeholder="Ex: abcd123@example.com"
           />
@@ -112,7 +111,7 @@ const Register = () => {
 
         <div className="mb-6">
           <label htmlFor="password" className="block text-gray-700 mb-1"> Mot de passe</label>
-          <input  type="password"  name="password"  id="password"  value={formulaire.password} onChange={handleChange}
+          <input type="password" name="password" id="password" value={formulaire.password} onChange={handleChange}
             className="w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 py-2 px-1 bg-transparent"
             placeholder="********"
           />
@@ -125,9 +124,9 @@ const Register = () => {
 
         <div className="flex flex-col items-start mb-6">
           <div className="flex items-center gap-2">
-            <input  type="checkbox"  name="term"  id="term" checked={formulaire.term}  onChange={(e) =>
-                setFormulaire({ ...formulaire, term: e.target.checked })
-              }
+            <input type="checkbox" name="term" id="term" checked={formulaire.term} onChange={(e) =>
+              setFormulaire({ ...formulaire, term: e.target.checked })
+            }
               className="w-5 h-5 border-[#8692A6] rounded focus:ring-blue-500"
             />
             <label htmlFor="term">Accepter les termes et conditions</label>

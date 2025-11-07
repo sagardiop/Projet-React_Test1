@@ -10,6 +10,7 @@ import ForgotPassword from './pages/ForgotPassword';
 
 import DashboardLayout from './layouts/DashboardLayout';
 import PublicLayout from './layouts/PublicLayout';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -23,14 +24,18 @@ function App() {
         </Route>
 
         {/* Routes du dashboard */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<PrivateRoute>
+          <DashboardLayout />
+        </PrivateRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="hotel" element={<Hotel />} />
           <Route path="hotelform" element={<HotelForm />} />
         </Route>
+
+        {/* Route directe pour HotelForm si besoin */}
         <Route path="/hotelform-hotel" element={<HotelForm />} />
 
-      
+        {/* Catch-all pour les pages non trouvées */}
         <Route path="*" element={<div>Page non trouvée</div>} />
       </Routes>
     </Router>

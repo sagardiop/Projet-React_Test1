@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseURL } from "./Api/axios/VariableAxios";
 
 const Login = () => {
   const [formulaire, setFormulaire] = useState({
@@ -28,14 +29,14 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post( "http://127.0.0.1:8000/api/login", {
+      const response = await axios.post( `${baseURL}/api/login`, {
         email: formulaire.email,
         password: formulaire.password,
       });
 
        console.log(" Réponse API :", response.data);
         const {success,message,data}=response.data;
-        localStorage.setItem('user',data.user)
+        localStorage.setItem('user', JSON.stringify(data.user))
 
       setMessage("Connexion réussie !");
       setErreurBoleen(true);

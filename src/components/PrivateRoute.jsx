@@ -1,15 +1,16 @@
-// import { Navigate, Outlet } from 'react-router-dom';
 
-// const PrivateRoute = () => {
-//   const token = localStorage.getItem('token');
+import { Navigate } from 'react-router-dom';
 
-//   // Si aucun token valide, on redirige vers la page de connexion
-//   if (!token || token === 'undefined' || token === 'null') {
-//     return <Navigate to="/" replace />;
-//   }
+const PrivateRoute = ({ children }) => {
 
-//   // Sinon, on laisse passer la route protégée
-//   return <Outlet />;
-// };
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return <Navigate to="/" replace />;
+    }
 
-// export default PrivateRoute;
+    return <div>
+        {children}
+    </div>
+};
+
+export default PrivateRoute;

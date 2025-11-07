@@ -1,18 +1,33 @@
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { baseURL, logout } from '../Api/axios/VariableAxios';
+const token = localStorage.getItem('token')
 
 const Dashboard = () => {
   const naviguer = useNavigate();
+  const undelogout = async () => {
+    await axios.post(logout, null, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+
+    })
+
+    localStorage.clear()
+    naviguer('/')
+    window.location.reload(true);
+  }
 
   return (
     <div className=" sm:p-6 bg-gray-100 min-h-screen ">
       <div className="shadow-lg bg-white flex flex-col gap-4 p-6 rounded-lg w-full mb-10">
-       
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
 
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-            <input  type="text" placeholder="Rechercher..."
+            <input type="text" placeholder="Rechercher..."
               className="flex-1 min-w-[200px] md:w-96 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
             <div className="relative inline-block">
@@ -25,9 +40,7 @@ const Dashboard = () => {
 
             <i
               className="fa-solid fa-right-to-bracket text-xl cursor-pointer hover:text-yellow-500 transition"
-              onClick={() => {
-                naviguer('/');
-              }}
+              onClick={undelogout}
               title="Connexion"
             ></i>
           </div>
@@ -40,7 +53,7 @@ const Dashboard = () => {
           <p className="text-base text-[#242565] mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
       </div>
-     <div className="flex flex-col md:flex-row gap-6 mb-6">
+      <div className="flex flex-col md:flex-row gap-6 mb-6">
         <div className="shadow-lg bg-white flex items-center gap-3 p-3 rounded-lg w-full md:w-1/3">
           <div className="flex items-center justify-center bg-purple-500 rounded-full w-12 h-12"><i className="fa-regular fa-envelope-open text-white text-lg"></i>
 
@@ -103,4 +116,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard ;
+export default Dashboard;

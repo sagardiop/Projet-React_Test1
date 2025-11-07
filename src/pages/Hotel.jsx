@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseURL } from "../Api/axios/VariableAxios";
+import { baseURL, logout } from "../Api/axios/VariableAxios";
+const token = localStorage.getItem('token')
 
 function Hotel() {
   const navigate = useNavigate();
@@ -9,6 +10,20 @@ function Hotel() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const undelogout = async () => {
+    await axios.post(logout, null, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+
+    })
+
+    localStorage.clear()
+    navigate('/')
+    window.location.reload(true);
+  }
+
 
 
   const fetchHotels = async () => {
@@ -72,7 +87,7 @@ function Hotel() {
             </div>
             <i
               className="fa-solid fa-right-to-bracket text-xl cursor-pointer hover:text-yellow-500"
-              onClick={() => navigate("/")}
+             onClick={undelogout}
             ></i>
           </div>
         </div>
@@ -135,9 +150,6 @@ function Hotel() {
 }
 
 export default Hotel;
-
-
-
 
 
 
