@@ -41,18 +41,18 @@ function Hotel() {
   };
 
   
-  const deleteAllHotels = async () => {
-    try {
-      await axios.delete(`${baseURL}/api/hotels`);
-      setHotels([]); 
-      setMessage(" Tous les hôtels ont été supprimés avec succès !");
-      setSuccess(true);
-    } catch (err) {
-      console.error("Erreur lors de la suppression :", err);
-      setMessage("❌ Une erreur est survenue lors de la suppression.");
-      setSuccess(false);
-    }
-  };
+ const deleteAllHotels = async () => {
+  try {
+    await axios.delete(`${baseURL}/api/hotels/delete-all`);
+    setHotels([]); 
+    setMessage("✅ Tous les hôtels ont été supprimés avec succès !");
+    setSuccess(true);
+  } catch (err) {
+    console.error("Erreur lors de la suppression :", err);
+    setMessage("❌ Une erreur est survenue lors de la suppression.");
+    setSuccess(false);
+  }
+};
 
  
   useEffect(() => {
