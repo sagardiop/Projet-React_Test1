@@ -7,7 +7,7 @@ function Menu() {
         <div className="mb-6">
           <img src="/image1/Link → SVG.svg" alt="Logo profil" className="mb-2" />
          <p className="font-semibold text-xs">RED PRODUCT</p>
-
+         
           <p className="text-gray-400 uppercase text-xs mt-1">Principal</p>
         </div>
 
