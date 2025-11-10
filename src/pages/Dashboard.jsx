@@ -39,7 +39,7 @@ const Dashboard = () => {
             </div>
 
             <i
-              className="fa-solid fa-right-to-bracket text-xl cursor-pointer hover:text-yellow-500 transition"
+              className="fa-solid fa-right-to-bracket text-xl cursor-pointer hover:text-yellow-500 transition "
               onClick={undelogout}
               title="Connexion"
             ></i>

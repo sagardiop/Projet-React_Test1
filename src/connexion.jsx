@@ -34,7 +34,7 @@ const Login = () => {
         password: formulaire.password,
       });
 
-       console.log(" Réponse API :", response.data);
+      //  console.log(" Réponse API :", response.data);
         const {success,message,data}=response.data;
         localStorage.setItem('user', JSON.stringify(data.user))
 
@@ -116,7 +116,7 @@ const Login = () => {
           )}
         </div>
 
-         <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition duration-300">
+         <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition duration-300 cursor-pointer">
           Se connecter
         </button>
 
