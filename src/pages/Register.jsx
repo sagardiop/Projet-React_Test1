@@ -33,7 +33,7 @@ const Register = () => {
         password: formulaire.password,
         term: formulaire.term,
       });
-
+      naviguer("/dashboard");
       console.log(" Réponse API :", response.data);
 
       const { success, message, data } = response.data;
@@ -46,7 +46,7 @@ const Register = () => {
       // Optionnel : stocker le token
       localStorage.setItem("token", data.token);
 
-      naviguer("/dashboard");
+
     } catch (error) {
       // console.error("❌ Erreur :", error);
 
