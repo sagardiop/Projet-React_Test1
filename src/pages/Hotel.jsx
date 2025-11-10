@@ -24,7 +24,7 @@ function Hotel() {
     window.location.reload(true);
   }
 
-
+                                              
 
   const fetchHotels = async () => {
     try {

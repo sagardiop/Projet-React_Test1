@@ -25,7 +25,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      console.log("🔍 Données envoyées :", formulaire);
+      // console.log("🔍 Données envoyées :", formulaire);
 
       const response = await axios.post(register, {
         name: formulaire.name,
@@ -34,7 +34,7 @@ const Register = () => {
         term: formulaire.term,
       });
       naviguer("/dashboard");
-      console.log(" Réponse API :", response.data);
+      // console.log(" Réponse API :", response.data);
 
       const { success, message, data } = response.data;
       localStorage.setItem('user', JSON.stringify(data.user))
