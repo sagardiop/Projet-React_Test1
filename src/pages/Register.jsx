@@ -51,7 +51,7 @@ const Register = () => {
       // console.error("❌ Erreur :", error);
 
       if (error.response) {
-        console.log("📩 Réponse Laravel complète :", error.response.data);
+        // console.log("📩 Réponse Laravel complète :", error.response.data);
         setErreurBoleen(false);
         setMessage(error.response.data.message || "Erreur d'inscription.");
         setMessagePartiel(error.response.data.errors || {});
