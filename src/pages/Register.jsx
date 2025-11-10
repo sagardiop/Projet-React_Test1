@@ -138,14 +138,14 @@ const Register = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition duration-300"
+          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition duration-300 cursor-pointer"
         >
           S'inscrire
         </button>
 
         <p className="text-sm text-center mt-4">
           Vous avez déjà un compte ?{" "}
-          <a href="/" className="text-green-500 hover:underline">
+          <a href="/" className="text-green-500 hover:underline cursor-pointer">
             Se connecter
           </a>
         </p>

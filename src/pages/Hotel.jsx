@@ -106,7 +106,7 @@ function Hotel() {
      
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <h1 className="text-xl font-bold text-gray-800">Hôtels</h1>
-          <button  type="button"  onClick={handleCreateHotel} className="px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-gray-100" 
+          <button  type="button"  onClick={handleCreateHotel} className="px-4 py-2 bg-white text-black border border-gray-300 rounded hover:bg-gray-100 cursor-pointer" 
               >+ Créer un nouvel hôtel
           </button>
         </div>
@@ -137,7 +137,7 @@ function Hotel() {
             </div>
             {hotels.length > 0 && (
               <div className="mt-8 text-center">
-                <button  type="button"  onClick={deleteAllHotels}  className="px-6 py-3 bg-red-500 text-white rounded hover:bg-red-600 shadow-md"
+                <button  type="button"  onClick={deleteAllHotels}  className="px-6 py-3 bg-red-500 text-white rounded hover:bg-red-600 shadow-md cursor-pointer"
                 > Supprimer tous les hôtels  
                 </button>
               </div>

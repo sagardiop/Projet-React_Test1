@@ -168,7 +168,7 @@ function HotelForm() {
         </div>
 
         <div className="text-right">
-          <button  type="submit"  className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+          <button  type="submit"  className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition cursor-pointer"
           > Enregistrer
            
           </button>
